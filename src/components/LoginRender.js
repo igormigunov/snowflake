@@ -152,14 +152,8 @@ class LoginRender extends Component {
     if (value.username !== '') {
       this.props.actions.onAuthFormFieldChange('username', value.username)
     }
-    if (value.email !== '') {
-      this.props.actions.onAuthFormFieldChange('email', value.email)
-    }
     if (value.password !== '') {
       this.props.actions.onAuthFormFieldChange('password', value.password)
-    }
-    if (value.passwordAgain !== '') {
-      this.props.actions.onAuthFormFieldChange('passwordAgain', value.passwordAgain)
     }
     this.setState(
       {value}
@@ -171,15 +165,6 @@ class LoginRender extends Component {
   *  @param actions the action for the message type
   */
   getMessage (messageType, actions) {
-    let forgotPassword =
-      <TouchableHighlight
-        onPress={() => {
-          actions.forgotPasswordState()
-          Actions.ForgotPassword()
-        }} >
-        <Text>{I18n.t('LoginRender.forgot_password')}</Text>
-      </TouchableHighlight>
-
     let alreadyHaveAccount =
       <TouchableHighlight
         onPress={() => {
@@ -199,8 +184,6 @@ class LoginRender extends Component {
       </TouchableHighlight>
 
     switch (messageType) {
-      case FORGOT_PASSWORD:
-        return forgotPassword
       case LOGIN:
         return alreadyHaveAccount
       case REGISTER:
@@ -277,13 +260,6 @@ class LoginRender extends Component {
               isDisabled={!this.props.auth.form.isValid || this.props.auth.form.isFetching}
               onPress={onButtonPress}
               buttonText={loginButtonText} />
-
-            <View >
-              <View style={styles.forgotContainer}>
-                {leftMessage}
-                {rightMessage}
-              </View>
-            </View>
 
           </View>
         </ScrollView>

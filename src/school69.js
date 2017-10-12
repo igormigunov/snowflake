@@ -52,7 +52,7 @@ var I18n = require('react-native-i18n')
 
 // Support fallbacks so en-US & en-BR both use en
 I18n.fallbacks = true
-
+I18n.locale = 'ru'
 import Translations from './lib/Translations'
 I18n.translations = Translations
 
@@ -84,7 +84,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
  *  The necessary actions for dispatching our bootstrap values
  */
 import {setPlatform, setVersion} from './reducers/device/deviceActions'
-import {setStore} from './reducers/global/globalActions'
+import {getMarks, setStore} from './reducers/global/globalActions'
 
 /**
  * ## States
@@ -174,7 +174,7 @@ export default function native (platform) {
                 initial />
 
               <Scene key='InitialLoginForm'
-                component={Register}
+                component={Login}
                 type='replace' />
 
               <Scene key='Login'
@@ -189,36 +189,20 @@ export default function native (platform) {
                 component={ForgotPassword}
                 type='replace' />
 
-              <Scene key='Subview'
-                component={Subview} />
-
               <Scene key='Tabbar'
                 tabs
                 hideNavBar
                 tabBarStyle={styles.tabBar}
-                default='Main'>
-
-                <Scene key='Logout'
-                  title={I18n.t('Snowflake.logout')}
-                  icon={TabIcon}
-                  iconName={'sign-out'}
-                  hideNavBar
-                  component={Logout} />
-
+                default='Main'
+              >
                 <Scene key='Main'
                   title={I18n.t('Snowflake.main')}
                   iconName={'home'}
                   icon={TabIcon}
                   hideNavBar
                   component={Main}
+                  onPress={() => store.dispatch(getMarks())}
                   initial />
-
-                <Scene key='Profile'
-                  title={I18n.t('Snowflake.profile')}
-                  icon={TabIcon}
-                  iconName={'gear'}
-                  hideNavBar
-                  component={Profile} />
               </Scene>
             </Scene>
           </Router>
@@ -230,5 +214,5 @@ export default function native (platform) {
      * registerComponent to the AppRegistery and off we go....
      */
 
-  AppRegistry.registerComponent('snowflake', () => Snowflake)
+  AppRegistry.registerComponent('school69', () => Snowflake)
 }

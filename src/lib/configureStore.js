@@ -11,7 +11,8 @@
  *
  * redux functions
  */
-import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'remote-redux-devtools'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 
 /**
@@ -25,9 +26,9 @@ import reducer from '../reducers'
  * ## creatStoreWithMiddleware
  * Like the name...
  */
-const createStoreWithMiddleware = applyMiddleware(
-  thunk
-)(createStore)
+const composeEnhancers = composeWithDevTools({name: 'School Application'})
+
+
 
 /**
  * ## configureStore
@@ -36,5 +37,7 @@ const createStoreWithMiddleware = applyMiddleware(
  *
  */
 export default function configureStore (initialState) {
-  return createStoreWithMiddleware(reducer, initialState)
+  return createStore(reducer, initialState, composeEnhancers(
+    applyMiddleware(thunk)
+  ))
 }

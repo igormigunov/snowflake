@@ -87,7 +87,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.snowflake"
+        applicationId "com.school69"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -96,6 +96,14 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+                release {
+                    storeFile file('my-release-key.keystore')
+                    storePassword 'igormigunov'
+                    keyAlias 'my-key-alias'
+                    keyPassword 'igormigunov'
+                }
+            }
     splits {
         abi {
             reset()
@@ -106,6 +114,7 @@ android {
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }

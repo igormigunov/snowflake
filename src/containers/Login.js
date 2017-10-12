@@ -30,8 +30,7 @@ import React from 'react'
 
 const {
   LOGIN,
-  REGISTER,
-  FORGOT_PASSWORD
+  REGISTER
 } = require('../lib/constants').default
 
 /**
@@ -79,7 +78,6 @@ let Login = React.createClass({
         onButtonPress={onButtonPress}
         displayPasswordCheckbox
         leftMessageType={REGISTER}
-        rightMessageType={FORGOT_PASSWORD}
         auth={this.props.auth}
         global={this.props.global}
       />

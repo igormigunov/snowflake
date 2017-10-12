@@ -1,4 +1,4 @@
-package com.snowflake;
+package com.school69;
 
 import android.app.Application;
 import android.util.Log;

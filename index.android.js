@@ -1,6 +1,6 @@
 'use strict'
 
-import snowflake from './src/snowflake'
+import school69 from './src/school69'
 
-snowflake('android')
+school69('android')
 

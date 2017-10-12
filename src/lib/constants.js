@@ -52,6 +52,9 @@ export default keyMirror({
 
   FORGOT_PASSWORD: null,
   LOGIN: null,
-  REGISTER: null
+  REGISTER: null,
+  GET_MARKS_REQUEST: null,
+  GET_MARKS_SUCCESS: null,
+  GET_MARKS_FAILURE: null
 
 })

@@ -22,7 +22,10 @@ const {
 
   GET_STATE,
   SET_STATE,
-  SET_STORE
+  SET_STORE,
+  GET_MARKS_REQUEST,
+  GET_MARKS_SUCCESS,
+  GET_MARKS_FAILURE
 
 } = require('../../lib/constants').default
 
@@ -55,6 +58,13 @@ export default function globalReducer (state = initialState, action) {
     case LOGIN_SUCCESS:
     case GET_PROFILE_SUCCESS:
       return state.set('currentUser', action.payload)
+
+    case GET_MARKS_REQUEST:
+      return state.set('marksLoading', false)
+    case GET_MARKS_FAILURE:
+      return state.set('marksLoading', true)
+    case GET_MARKS_SUCCESS:
+      return state.set('marks', action.payload).set('marksLoading', true)
 
     case SESSION_TOKEN_SUCCESS:
       return state.set('currentUser', action.payload.sessionToken)
@@ -103,7 +113,6 @@ export default function globalReducer (state = initialState, action) {
         // let _noStore = _noCurrentState.set('store',null);
 
         newState['global'] = _state.global.set('currentState', null).set('store', null).toJS()
-
         return state.set('showState', action.payload)
         .set('currentState', newState)
       } else {

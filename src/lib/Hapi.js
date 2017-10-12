@@ -29,7 +29,7 @@ export class Hapi extends Backend {
       throw new Error('TokenMissing')
     }
     this._sessionToken =
-      _.isNull(token) ? null : token.sessionToken.sessionToken
+      _.isNull(token) ? null : token.sessionToken.token
 
     this.API_BASE_URL = CONFIG.backend.hapiLocal
           ? CONFIG.HAPI.local.url
@@ -52,7 +52,7 @@ export class Hapi extends Backend {
   async signup (data) {
     return await this._fetch({
       method: 'POST',
-      url: '/account/register',
+      url: '/api/user',
       body: data
     })
       .then((res) => {
@@ -87,11 +87,11 @@ export class Hapi extends Backend {
   async login (data) {
     return await this._fetch({
       method: 'POST',
-      url: '/account/login',
+      url: '/api/auth',
       body: data
     })
       .then((res) => {
-        if (res.status === 200 || res.status === 201) {
+      if (res.status === 200 || res.status === 201) {
           return res.json
         } else {
           throw (res.json)
@@ -233,9 +233,8 @@ export class Hapi extends Backend {
       headers: {
       }
     }
-
     if (this._sessionToken) {
-      reqOpts.headers['Authorization'] = 'Bearer ' + this._sessionToken
+      reqOpts.headers['x-access-token'] = this._sessionToken
     }
 
     if (opts.method === 'POST' || opts.method === 'PUT') {
@@ -253,7 +252,6 @@ export class Hapi extends Backend {
     let response = await fetch(url, reqOpts)
     res.status = response.status
     res.code = response.code
-
     return response.json()
       .then((json) => {
         res.json = json

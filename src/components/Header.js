@@ -137,23 +137,8 @@ var Header = React.createClass({
     if (this.props.showState) {
       displayText = JSON.stringify(this.props.currentState)
     }
-
     return (
       <View>
-        <View style={styles.header}>
-
-          <TouchableHighlight onPress={this._onPressMark}>
-
-            <Image style={styles.mark}
-              source={require('../images/Snowflake.png')}
-            />
-          </TouchableHighlight>
-          {this.props.isFetching
-           ? <ActivityIndicator animating size='large' />
-           : null
-          }
-
-        </View>
         {this.props.showState
          ? <View style={styles.container}>
            <Text>{I18n.t('Header.current_state')} ({I18n.t('Header.see_console')})</Text>

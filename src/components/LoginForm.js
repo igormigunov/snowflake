@@ -73,14 +73,6 @@ var LoginForm = React.createClass({
       error: this.props.form.fields.usernameErrorMsg
     }
 
-    let email = {
-      label: I18n.t('LoginForm.email'),
-      keyboardType: 'email-address',
-      editable: !this.props.form.isFetching,
-      hasError: this.props.form.fields.emailHasError,
-      error: this.props.form.fields.emailErrorMsg
-    }
-
     let secureTextEntry = !this.props.form.fields.showPassword
 
     let password = {
@@ -92,15 +84,6 @@ var LoginForm = React.createClass({
       error: this.props.form.fields.passwordErrorMsg
     }
 
-    let passwordAgain = {
-      label: I18n.t('LoginForm.password_again'),
-      secureTextEntry: secureTextEntry,
-      maxLength: 12,
-      editable: !this.props.form.isFetching,
-      hasError: this.props.form.fields.passwordAgainHasError,
-      error: this.props.form.fields.passwordAgainErrorMsg
-    }
-
     let loginForm
     switch (formType) {
       /**
@@ -110,20 +93,13 @@ var LoginForm = React.createClass({
       case (REGISTER):
         loginForm = t.struct({
           username: t.String,
-          email: t.String,
-          password: t.String,
-          passwordAgain: t.String
+          password: t.String
         })
         options.fields['username'] = username
         options.fields['username'].placeholder = I18n.t('LoginForm.username')
         options.fields['username'].autoCapitalize = 'none'
-        options.fields['email'] = email
-        options.fields['email'].placeholder = I18n.t('LoginForm.email')
-        options.fields['email'].autoCapitalize = 'none'
         options.fields['password'] = password
         options.fields['password'].placeholder = I18n.t('LoginForm.password')
-        options.fields['passwordAgain'] = passwordAgain
-        options.fields['passwordAgain'].placeholder = I18n.t('LoginForm.password_again')
         break
 
       /**
@@ -150,7 +126,6 @@ var LoginForm = React.createClass({
         loginForm = t.struct({
           email: t.String
         })
-        options.fields['email'] = email
         options.fields['email'].autoCapitalize = 'none'
         options.fields['email'].placeholder = I18n.t('LoginForm.email')
         break

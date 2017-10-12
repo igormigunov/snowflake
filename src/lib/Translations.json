@@ -74,7 +74,9 @@
       "profile":"Profile"
     },
     "Main": {
-      "navigate": "Navigate to Subview"
+      "navigate": "Navigate to Subview",
+      "avgMark": "Avg",
+      "loading": "Loading...."
     },
     "Profile": {
       "username": "User name",
@@ -111,6 +113,64 @@
       "valid_password_again": "Passwords must match"
     }
   },
+  "ru": {
+    "App": {
+      "version": "Версия"
+    },
+    "Header": {
+      "current_state": "Current State",
+      "see_console": "see console",
+      "update_state": "Update State"
+    },
+    "Subview": {
+      "subview": "Subview",
+      "back": "Back"
+    },
+    "Snowflake": {
+      "logout": "Выход",
+      "main": "Оценки",
+      "profile":"Profile"
+    },
+    "Main": {
+      "navigate": "Navigate to Subview",
+      "avgMark": "Среднее",
+      "loading": "Загружаю...."
+    },
+    "Profile": {
+      "username": "User name",
+      "email": "Email",
+      "update": "Update Profile",
+      "verified": "Email verified",
+      "display": "display only"
+    },
+    "LoginForm": {
+      "username": "Имя пользователя",
+      "email": "Email",
+      "password": "Пароль",
+      "password_again": "Password again"
+    },
+    "LoginRender": {
+      "forgot_password": "Забыли пароль?",
+      "already_have_account": "Есть аккаунт?",
+      "register": "Регистрация",
+      "show_password": "Показать пароль"
+    },
+    "ForgotPassword": {
+      "reset_password": "Reset password"
+    },
+    "Login": {
+      "login": "Войти"
+    },
+    "Register": {
+      "register": "Регистрация"
+    },
+    "FieldValidation": {
+      "valid_user_name": "6-12 in length with letters or numbers",
+      "valid_email": "Provide valid email",
+      "valid_password": "6-12 in length, with a number and special character: !@#$%^&*",
+      "valid_password_again": "Passwords must match"
+    }
+  },
   "fr": {
     "App": {
       "version": "Version"
@@ -118,12 +178,12 @@
     "Header": {
       "current_state": "état actuel",
       "see_console": "voir console",
-      "update_state": "état de mise à jour"      
-    },    
+      "update_state": "état de mise à jour"
+    },
     "Subview": {
       "subview": "Sous-vue",
       "back": "Arrière"
-    },    
+    },
     "Snowflake": {
       "logout": "Se déconnecter",
       "main": "Principal",
@@ -137,7 +197,7 @@
       "email": "Email",
       "update": "Mettre à jour le profil",
       "verified": "Email verifié",
-      "display": "afficher seulement"      
+      "display": "afficher seulement"
     },
     "LoginForm": {
       "username": "Nom d'utilisateur",
@@ -149,7 +209,7 @@
       "forgot_password": "Mot de passe oublié?",
       "already_have_account": "Vous avez déjà compte?",
       "register": "Registre",
-      "show_password": "Montrer le mot de passe"      
+      "show_password": "Montrer le mot de passe"
     },
     "ForgotPassword": {
       "reset_password": "Réinitialiser le mot de passe"
@@ -165,7 +225,7 @@
       "valid_email": "Fournir email valide",
       "valid_password": "6-12 en longueur, avec un nombre et un caractère spécial: !@#$%^&*",
       "valid_password_again": "les mots de passe doivent correspondre"
-    }    
+    }
   },
   "es": {
     "App": {
@@ -174,12 +234,12 @@
     "Header": {
       "current_state": "Estado actual",
       "see_console": "ver la consola",
-      "update_state": "Estado de actualización"      
-    },    
+      "update_state": "Estado de actualización"
+    },
     "Subview": {
       "subview": "Subview",
       "back": "Regresar"
-    },    
+    },
     "Snowflake": {
       "logout": "Cerrar sesión",
       "main": "Principal",
@@ -205,7 +265,7 @@
       "forgot_password": "¿Olvidaste tu contraseña?",
       "already_have_account": "¿Ya tienes cuenta?",
       "register": "Registrarse",
-      "show_password": "Mostrar Contraseña"      
+      "show_password": "Mostrar Contraseña"
     },
     "ForgotPassword": {
       "reset_password": "Restablecer la contraseña"
@@ -221,7 +281,7 @@
       "valid_email": "Proveer de correo electrónico válida",
       "valid_password": "6-12 de longitud, con un número y carácter especial: !@#$%^&*",
       "valid_password_again": "Las contraseñas deben coincidir"
-    }    
+    }
   }
 
 }

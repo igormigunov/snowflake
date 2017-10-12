@@ -26,7 +26,6 @@ import {Actions} from 'react-native-router-flux'
 /**
  * The Header will display a Image and support Hot Loading
  */
-import Header from '../components/Header'
 
 /**
  * The components needed from React
@@ -35,15 +34,10 @@ import React, {Component} from 'react'
 import
 {
   StyleSheet,
-  View
+  View,
+  Text
 }
 from 'react-native'
-
-/**
- * The platform neutral button
- */
-const Button = require('apsl-react-native-button')
-
 /**
  *  Instead of including all app states via ...state
  *  One could explicitly enumerate only those which Main.js will depend on.
@@ -58,7 +52,9 @@ function mapStateToProps (state) {
     },
     global: {
       currentState: state.global.currentState,
-      showState: state.global.showState
+      showState: state.global.showState,
+      marks: state.global.marks,
+      marksLoading: state.global.marksLoading
     }
   }
 }
@@ -75,19 +71,18 @@ function mapDispatchToProps (dispatch) {
 var styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    flex: 1
+    flex: 1,
+    padding: 10
   },
   summary: {
     fontFamily: 'BodoniSvtyTwoITCTT-Book',
     fontSize: 18,
     fontWeight: 'bold'
   },
-  button: {
-    backgroundColor: '#FF3366',
-    borderColor: '#FF3366',
-    marginLeft: 10,
-    marginRight: 10
-  }
+  head: { height: 40, backgroundColor: '#f1f8ff' },
+  title: { fontWeight: 'bold' },
+  row: { height: 35 },
+  text: { textAlign: 'center' }
 })
 /**
  * ### Translations
@@ -99,34 +94,31 @@ I18n.translations = Translations
 /**
  * ## App class
  */
+const getAvg = marks => marks.reduce((r, i) => { r += i; return r }) / marks.length
+
 class Main extends Component {
-
-  handlePress () {
-    Actions.Subview({
-      title: 'Subview'
-      // you can add additional props to be passed to Subview here...
-    })
+  renderMark (sub, marks, showAll = true) {
+    const avg = getAvg(marks).toFixed(2)
+    return (<Text key={sub} style={styles.row}>
+      <Text style={styles.title}>{sub}</Text> {showAll && marks.join(', ')} <Text style={styles.summary}>{avg} ({Math.round(avg)})</Text>
+    </Text>)
   }
-
   render () {
+    const { marks, marksLoading } = this.props.global
     return (
       <View style={styles.container}>
-        <View>
-          <Header isFetching={this.props.auth.form.isFetching}
-            showState={this.props.global.showState}
-            currentState={this.props.global.currentState}
-            onGetState={this.props.actions.getState}
-            onSetState={this.props.actions.setState} />
-
-          <Button style={styles.button} onPress={this.handlePress.bind(this)}>
-            {I18n.t('Main.navigate')}
-          </Button>
+        { !marksLoading && <Text>{ I18n.t('Main.loading') }</Text>}
+        <View style={ { opacity: !marksLoading ? 0.3 : 1} }>
+        { marks && Object.keys(marks.grouped).map(key => this.renderMark(key, marks.grouped[key]))}
+          { marks && this.renderMark(I18n.t('Main.avgMark'),
+            Object.keys(marks.grouped).map(key =>
+              Math.round(getAvg(marks.grouped[key]))), false
+          ) }
         </View>
       </View>
     )
   }
 }
-
 /**
  * Connect the properties
  */

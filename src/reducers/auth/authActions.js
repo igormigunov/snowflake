@@ -54,6 +54,7 @@ const BackendFactory = require('../../lib/BackendFactory').default
 import {Actions} from 'react-native-router-flux'
 
 import {appAuthToken} from '../../lib/AppAuthToken'
+import {getMarks} from '../global/globalActions';
 
 const _ = require('underscore')
 
@@ -234,6 +235,7 @@ export function deleteSessionToken () {
 export function getSessionToken () {
   return dispatch => {
     dispatch(sessionTokenRequest())
+    dispatch(getMarks())
     return appAuthToken.getSessionToken()
 
       .then((token) => {
