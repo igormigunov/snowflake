@@ -197,7 +197,7 @@ export default function native (platform) {
               >
                 <Scene key='Main'
                   title={I18n.t('Snowflake.main')}
-                  iconName={'home'}
+                  iconName={'refresh'}
                   icon={TabIcon}
                   hideNavBar
                   component={Main}

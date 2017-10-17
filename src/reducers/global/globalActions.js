@@ -6,6 +6,7 @@
 'use strict'
 
 import {appAuthToken} from '../../lib/AppAuthToken'
+import {Actions} from 'react-native-router-flux';
 
 const BackendFactory = require('../../lib/BackendFactory').default
 /**
@@ -90,14 +91,13 @@ export function getMarks () {
   return dispatch => {
     dispatch(getMarksRequest())
     return appAuthToken.getSessionToken()
-      .then((token) => {
-      return BackendFactory(token)._fetch({ url: '/api/user/marks' })
-          .then((json) => {
-            dispatch(getMarksSuccess(json.json))
-          })
-          .catch((error) => {
-            dispatch(getMarksFailure(error))
-          })
-      })
+      .then((token) => BackendFactory(token)._fetch({ url: '/api/user/marks' })
+        .then((json) => {
+          dispatch(getMarksSuccess(json.json))
+        })
+        .catch((error) => {
+          dispatch(getMarksFailure(error));
+          Actions.InitialLoginForm()
+        }))
   }
 }
